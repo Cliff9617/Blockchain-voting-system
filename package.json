@@ -1,0 +1,27 @@
+{
+  "name": "inbox",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "compile": "node compile.js",
+    "test": "npm run compile && mocha",
+    "demo:voting": "npm run compile && node runVoting.js",
+    "test:voting": "node test_voting_system.js"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^6.1.2",
+    "@types/node": "^22.19.9",
+    "follow-redirects": "^1.15.11",
+    "ganache": "^7.9.2",
+    "hardhat": "^2.22.3",
+    "mocha": "^10.4.0",
+    "solc": "0.8.20",
+    "typescript": "^5.4.5",
+    "web3": "^4.9.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "fs-extra": "^11.3.4"
+  }
+}
