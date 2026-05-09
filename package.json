@@ -1,17 +1,26 @@
 {
-  "name": "inbox",
+  "name": "devote-voting-system",
   "version": "1.0.0",
+  "description": "DeVote - Decentralized Voting System on Ethereum Blockchain",
   "private": true,
   "license": "MIT",
   "scripts": {
-    "compile": "node compile.js",
-    "test": "npm run compile && mocha",
-    "demo:voting": "npm run compile && node runVoting.js",
-    "test:voting": "node test_voting_system.js"
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
+    "demo:voting": "hardhat run runVoting.js",
+    "test:voting": "node test_voting_system.js",
+    "ui:install": "cd devote-ui && npm install",
+    "ui:start": "cd devote-ui && npm start",
+    "ui:build": "cd devote-ui && npm run build",
+    "ui:test": "cd devote-ui && npm test",
+    "install:all": "npm install && npm run ui:install"
   },
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^6.1.2",
+    "@nomicfoundation/hardhat-ethers": "^3.0.6",
     "@types/node": "^22.19.9",
+    "dotenv": "^17.3.1",
+    "ethers": "^6.12.1",
     "follow-redirects": "^1.15.11",
     "ganache": "^7.9.2",
     "hardhat": "^2.22.3",
@@ -21,7 +30,8 @@
     "web3": "^4.9.0"
   },
   "dependencies": {
-    "dotenv": "^17.3.1",
+    "@vladmandic/face-api": "^1.7.15",
+    "bcryptjs": "^3.0.3",
     "fs-extra": "^11.3.4"
   }
 }

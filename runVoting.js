@@ -37,17 +37,27 @@ async function main() {
 
   console.log("✅ Voting deployed at:", voting.options.address);
 
-  // ---- DEMO FLOW (adjust function names if yours differ) ----
+  // ---- DEMO FLOW ----
   // 1) Add candidates (admin only)
   console.log("\nAdding candidates...");
   await voting.methods.addCandidate("Alice").send({ from: admin, gas: 300000 });
   await voting.methods.addCandidate("Bob").send({ from: admin, gas: 300000 });
   console.log("✅ Candidates added: Alice, Bob");
 
-  // 2) Vote once (voter1)
+  // 2) Register voter (admin only)
+  console.log("\nRegistering voter...");
+  await voting.methods.registerVoter(voter1).send({ from: admin, gas: 200000 });
+  console.log("✅ Voter1 registered:", voter1);
+
+  // 3) Start election (admin only)
+  console.log("\nStarting election...");
+  await voting.methods.startElection().send({ from: admin, gas: 200000 });
+  console.log("✅ Election started");
+
+  // 4) Vote once (voter1)
   console.log("\nVoting...");
-  await voting.methods.vote(0).send({ from: voter1, gas: 300000 });
-  console.log("✅ Voter1 voted for candidate index 0 (Alice)");
+  await voting.methods.vote(1).send({ from: voter1, gas: 300000 });
+  console.log("✅ Voter1 voted for candidate index 1 (Alice)");
 
   // 3) Read results
   const c0 = await voting.methods.candidates(0).call();
@@ -57,10 +67,10 @@ async function main() {
   console.log("Candidate 0:", c0);
   console.log("Candidate 1:", c1);
 
-  // 4) Close election (admin)
-  console.log("\nClosing election...");
-  await voting.methods.closeElection().send({ from: admin, gas: 200000 });
-  console.log("✅ Election closed");
+  // 5) End election (admin)
+  console.log("\nEnding election...");
+  await voting.methods.endElection().send({ from: admin, gas: 200000 });
+  console.log("✅ Election ended");
 
   console.log("\nDone ✅");
 }
