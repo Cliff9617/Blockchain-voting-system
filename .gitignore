@@ -1,6 +1,7 @@
 # Dependencies
 node_modules/
 devote-ui/node_modules/
+ussd-gateway/node_modules/
 
 # Build outputs
 build/

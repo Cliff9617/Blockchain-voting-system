@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: devote-ussd-gateway
+    env: node
+    rootDir: ussd-gateway
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: AT_USERNAME
+        value: sandbox
+      - key: AT_SENDER_ID
+        value: DEVOTE
+      - key: RPC_URL
+        value: https://ethereum-sepolia-rpc.publicnode.com
+      - key: CONTRACT_ADDRESS
+        value: 0xc1dd7A144Ec21088630637a5978cadF51b34931E
+      - key: VOTER_SALT
+        value: kenya-elections-sepolia-digital-trust-2026
+      - key: AT_API_KEY
+        sync: false
+      - key: RELAYER_PRIVATE_KEY
+        sync: false
